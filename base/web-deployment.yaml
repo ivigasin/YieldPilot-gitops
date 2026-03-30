@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flowfi-web
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowfi-web
+  template:
+    metadata:
+      labels:
+        app: flowfi-web
+    spec:
+      containers:
+        - name: web
+          image: flowfi/web:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: flowfi-env
+            - secretRef:
+                name: flowfi-secrets
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  selector:
+    app: flowfi-web
+  ports:
+    - port: 3000
+      targetPort: 3000

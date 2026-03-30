@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flowfi-env
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+data:
+  PORT: '3000'
+  # DATABASE_URL and REDIS_URL come from Secret flowfi-secrets (see README).
+  NEXT_PUBLIC_API_URL: 'http://api:3000/api'

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flowfi-worker
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowfi-worker
+  template:
+    metadata:
+      labels:
+        app: flowfi-worker
+    spec:
+      containers:
+        - name: worker
+          image: flowfi/worker:latest
+          envFrom:
+            - configMapRef:
+                name: flowfi-env
+            - secretRef:
+                name: flowfi-secrets
