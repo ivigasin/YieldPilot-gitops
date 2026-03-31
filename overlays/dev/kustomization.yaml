@@ -5,15 +5,15 @@ resources:
   - namespace.yaml
   - ../../base
 images:
-  - name: flowfi/api
+  - name: registry.digitalocean.com/vigasin-flowfi/flowfi/api
     newName: registry.digitalocean.com/vigasin-flowfi/flowfi/api
-    newTag: dev
-  - name: flowfi/web
+    newTag: de414bab6538
+  - name: registry.digitalocean.com/vigasin-flowfi/flowfi/web
     newName: registry.digitalocean.com/vigasin-flowfi/flowfi/web
-    newTag: dev
-  - name: flowfi/worker
+    newTag: de414bab6538
+  - name: registry.digitalocean.com/vigasin-flowfi/flowfi/worker
     newName: registry.digitalocean.com/vigasin-flowfi/flowfi/worker
-    newTag: dev
-  - name: flowfi/indexer
+    newTag: de414bab6538
+  - name: registry.digitalocean.com/vigasin-flowfi/flowfi/indexer
     newName: registry.digitalocean.com/vigasin-flowfi/flowfi/indexer
-    newTag: dev
+    newTag: de414bab6538
